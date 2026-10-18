@@ -1,124 +1,353 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f0e8">
   <title>Days of the Week — For Deena</title>
+
   <style>
     :root {
-      --paper: #fffaf0;
-      --ink: #4c4038;
-      --muted: #8b7a6e;
-      --line: #eadfce;
-      --accent: #b86f65;
-      --accent-soft: #f7e8e1;
+      --paper: #fffaf4;
+      --ink: #51443f;
+      --muted: #9b857c;
+      --rose: #b87579;
+      --rose-light: #f4e4e2;
+      --line: rgba(184, 117, 121, .16);
+      --gold: #c6a36d;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 32px 16px;
+      padding: 28px 16px;
       display: grid;
       place-items: center;
-      background: #e9e0d4;
       color: var(--ink);
+      background:
+        radial-gradient(
+          ellipse at 12% 8%,
+          rgba(255,255,255,.85),
+          transparent 35%
+        ),
+        radial-gradient(
+          ellipse at 90% 90%,
+          rgba(216,181,165,.28),
+          transparent 32%
+        ),
+        #eee4da;
       font-family: Georgia, "Times New Roman", serif;
     }
-    .diary {
-      width: min(100%, 620px);
-      padding: clamp(26px, 6vw, 54px);
-      background:
-        repeating-linear-gradient(to bottom, transparent 0, transparent 35px, rgba(184,111,101,.11) 36px, transparent 37px),
-        var(--paper);
-      border: 1px solid #e0d2c1;
-      border-radius: 4px;
-      box-shadow: 0 16px 40px rgba(70, 52, 38, .13);
+
+    .book {
       position: relative;
+      width: min(100%, 650px);
+      padding: clamp(28px, 7vw, 58px);
+      overflow: hidden;
+      border: 1px solid #e8d9cc;
+      border-radius: 5px 15px 15px 5px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(190,160,140,.12),
+          transparent 18px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 34px,
+          var(--line) 35px,
+          transparent 36px
+        ),
+        var(--paper);
+      box-shadow:
+        0 24px 65px rgba(88, 63, 52, .16),
+        inset 5px 0 0 rgba(193,160,139,.10);
     }
-    .date {
-      text-align: right;
+
+    .book::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(184,117,121,.17);
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       color: var(--muted);
-      font-size: .85rem;
-      letter-spacing: .08em;
+      font: 10px/1.5 Arial, sans-serif;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      margin-bottom: 22px;
     }
+
+    .ornament {
+      margin: 27px auto 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      color: var(--rose);
+      font-size: 17px;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      height: 1px;
+      width: 42px;
+      background: #dec9b9;
+    }
+
     h1 {
       margin: 0;
-      color: var(--accent);
-      font-size: clamp(2.1rem, 8vw, 3.3rem);
+      text-align: center;
+      color: #a9636c;
+      font-size: clamp(2.25rem, 8vw, 3.65rem);
       font-weight: normal;
-      line-height: 1.1;
-      text-align: center;
+      line-height: 1.08;
+      letter-spacing: -.035em;
     }
+
     .subtitle {
+      margin: 15px 0 31px;
+      color: #9a8178;
       text-align: center;
+      font-size: 1.03rem;
       font-style: italic;
-      color: var(--muted);
-      margin: 12px 0 34px;
-      font-size: 1.05rem;
+      line-height: 1.6;
     }
+
     .week {
       list-style: none;
       padding: 0;
       margin: 0;
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
+
     .week a {
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 15px;
+      gap: 15px;
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      border-radius: 8px;
       color: var(--ink);
       text-decoration: none;
-      border-bottom: 1px dashed #d9c8b7;
-      transition: background .2s ease, transform .2s ease;
+      transition:
+        background .22s ease,
+        border-color .22s ease,
+        transform .22s ease;
     }
-    .week a:hover, .week a:focus-visible {
-      background: var(--accent-soft);
+
+    .number {
+      width: 29px;
+      height: 29px;
+      flex: 0 0 29px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ead7ce;
+      border-radius: 50%;
+      color: #b17a78;
+      font: 11px Arial, sans-serif;
+      background: rgba(255,255,255,.48);
+    }
+
+    .day {
+      font-size: 1.12rem;
+      letter-spacing: .01em;
+    }
+
+    .hint {
+      margin-left: auto;
+      color: #b47a7c;
+      font-size: 18px;
+      transition: transform .22s ease;
+    }
+
+    .week a:hover,
+    .week a:focus-visible {
+      background: rgba(244,228,226,.75);
+      border-color: #ecd5d2;
       transform: translateX(3px);
       outline: none;
     }
-    .day {
-      font-size: 1.18rem;
+
+    .week a:hover .hint,
+    .week a:focus-visible .hint {
+      transform: translateX(3px);
     }
-    .heart {
-      color: var(--accent);
-      font-size: 1.1rem;
-    }
-    footer {
+
+    .bottom {
       margin-top: 32px;
       text-align: center;
-      color: var(--muted);
-      font-style: italic;
-      font-size: .95rem;
     }
+
+    .bottom .rule {
+      width: 70px;
+      height: 1px;
+      margin: 0 auto 17px;
+      background: #dec9b9;
+    }
+
+    .bottom p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .signature {
+      margin-top: 10px;
+      color: var(--rose);
+      font-size: 1.05rem;
+    }
+
     @media (max-width: 420px) {
-      body { padding: 14px 10px; }
-      .diary { padding: 25px 18px; }
-      .week a { padding: 11px 8px; }
+      body {
+        padding: 14px 9px;
+      }
+
+      .book {
+        padding: 28px 20px 30px 28px;
+      }
+
+      .book::before {
+        left: 13px;
+      }
+
+      .week a {
+        padding: 10px 7px;
+        gap: 11px;
+      }
+
+      .day {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="diary">
-    <div class="date">A little note for Deena</div>
+  <main class="book">
+
+    <div class="topline">
+      <span>A little collection</span>
+      <span>✧ For Deena ✧</span>
+    </div>
+
+    <div class="ornament" aria-hidden="true">♡</div>
+
     <h1>Days of the Week</h1>
-    <p class="subtitle">Seven little doors, one for every day ♡</p>
 
-    <ul class="week">
-      <li><a href="https://mondaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Monday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://tuesdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Tuesday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://wednesdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Wednesday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://thursdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Thursday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://fridaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Friday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://saturdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Saturday</span><span class="heart">♡</span></a></li>
-      <li><a href="https://sundaytodeena.verce.app" target="_blank" rel="noopener noreferrer"><span class="day">Sunday</span><span class="heart">♡</span></a></li>
-    </ul>
+    <p class="subtitle">
+      Seven little doors, one for every day.<br>
+      And a little thought of you behind each one.
+    </p>
 
-    <footer>For all the little moments that make a week special.</footer>
+    <nav aria-label="Days of the week">
+      <ul class="week">
+
+        <li>
+          <a href="https://mondaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">01</span>
+            <span class="day">Monday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://tuesdaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">02</span>
+            <span class="day">Tuesday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://wednesdaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">03</span>
+            <span class="day">Wednesday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://thursdaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">04</span>
+            <span class="day">Thursday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://fridaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">05</span>
+            <span class="day">Friday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://saturdaytodeena.vercel.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">06</span>
+            <span class="day">Saturday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://sundaytodeena.verce.app"
+             target="_blank" rel="noopener noreferrer">
+            <span class="number">07</span>
+            <span class="day">Sunday</span>
+            <span class="hint">↗</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <footer class="bottom">
+      <div class="rule"></div>
+
+      <p>
+        For the ordinary days that become<br>
+        special just because you're in them.
+      </p>
+
+      <div class="signature">
+        with a little love, always ♡
+      </div>
+    </footer>
+
   </main>
 </body>
 </html>
