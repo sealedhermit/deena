@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days of the Week — For Deena</title>
+  <style>
+    :root {
+      --paper: #fffaf0;
+      --ink: #4c4038;
+      --muted: #8b7a6e;
+      --line: #eadfce;
+      --accent: #b86f65;
+      --accent-soft: #f7e8e1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 16px;
+      display: grid;
+      place-items: center;
+      background: #e9e0d4;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .diary {
+      width: min(100%, 620px);
+      padding: clamp(26px, 6vw, 54px);
+      background:
+        repeating-linear-gradient(to bottom, transparent 0, transparent 35px, rgba(184,111,101,.11) 36px, transparent 37px),
+        var(--paper);
+      border: 1px solid #e0d2c1;
+      border-radius: 4px;
+      box-shadow: 0 16px 40px rgba(70, 52, 38, .13);
+      position: relative;
+    }
+    .date {
+      text-align: right;
+      color: var(--muted);
+      font-size: .85rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(2.1rem, 8vw, 3.3rem);
+      font-weight: normal;
+      line-height: 1.1;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      color: var(--muted);
+      margin: 12px 0 34px;
+      font-size: 1.05rem;
+    }
+    .week {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .week a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 15px;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px dashed #d9c8b7;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .week a:hover, .week a:focus-visible {
+      background: var(--accent-soft);
+      transform: translateX(3px);
+      outline: none;
+    }
+    .day {
+      font-size: 1.18rem;
+    }
+    .heart {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: .95rem;
+    }
+    @media (max-width: 420px) {
+      body { padding: 14px 10px; }
+      .diary { padding: 25px 18px; }
+      .week a { padding: 11px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="diary">
+    <div class="date">A little note for Deena</div>
+    <h1>Days of the Week</h1>
+    <p class="subtitle">Seven little doors, one for every day ♡</p>
+
+    <ul class="week">
+      <li><a href="https://mondaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Monday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://tuesdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Tuesday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://wednesdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Wednesday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://thursdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Thursday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://fridaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Friday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://saturdaytodeena.vercel.app" target="_blank" rel="noopener noreferrer"><span class="day">Saturday</span><span class="heart">♡</span></a></li>
+      <li><a href="https://sundaytodeena.verce.app" target="_blank" rel="noopener noreferrer"><span class="day">Sunday</span><span class="heart">♡</span></a></li>
+    </ul>
+
+    <footer>For all the little moments that make a week special.</footer>
+  </main>
+</body>
+</html>
